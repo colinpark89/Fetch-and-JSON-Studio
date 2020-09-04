@@ -1,5 +1,34 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    window.addEventListener("load", function(){
+      fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function(response){
+        response.json().then(function(json) {
+          const astro = document.getElementById("container");
+          let astronauts = '';
+          for (i = 0; i <= json.length - 1; i ++){
+            console.log(json[i]);
+            astronauts += `
+              <div class="astronaut">
+                <div class="bio">
+                  <h3>${json[i].firstName} ${json[i].lastName}</h3>
+                  <ul>
+                    <li>Hours in space:${json[i].hoursInSpace}</li>
+                    <li>Active:${json[i].active}</li>
+                    <li>Skills:${json[i].skills}</li>
+                  </ul>
+                </div>
+                <img class="avatar" src=${json[i].picture} class></img>
+              </div>
+              `;
+              // console.log(astronauts)
+            }
+            // console.log(astronauts)
+            astro.innerHTML = astronauts;
+        })
+      });
+    });
+  </script>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
